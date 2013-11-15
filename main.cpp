@@ -38,8 +38,8 @@ string GetIP(string domain)
 	if( (hptr = gethostbyname(domain.c_str()) ) == NULL )
 		return "error";
 
-	memcpy(&local_addr.sin_addr.s_addr,hptr->h_addr,4);
-	in.s_addr=local_addr.sin_addr.s_addr;
+	memcpy(&local_addr.sin_addr.s_addr, hptr->h_addr,4);
+	in.s_addr = local_addr.sin_addr.s_addr;
 
 	return inet_ntoa(in);
 }
