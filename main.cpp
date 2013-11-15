@@ -29,7 +29,6 @@ void init()
 
 }
 
-//由域名获取IP地址
 string GetIP(string domain)
 {
 	struct hostent *hptr;
@@ -45,7 +44,6 @@ string GetIP(string domain)
 	return inet_ntoa(in);
 }
 
-//获取Whois信息
 string GetWhois(string domain, string prev)
 {
 	int bytes;
@@ -84,7 +82,6 @@ string GetWhois(string domain, string prev)
 	}
 
 	return result;
-
 }
 
 
@@ -99,8 +96,15 @@ int main()
 			break;
 		
 		int index = line.find_first_of(".");
-		string prev = line.substr(index, line.size() - index + 1);
-		cout << GetWhois(line, prev) << endl;
+		if ( index != -1 )
+		{
+			string prev = line.substr(index, line.size() - index + 1);
+			cout << GetWhois(line, prev) << endl;
+		}
+		else
+		{
+			cout << "Domain Name Wrong!" << endl;
+		}
 	}
 	return 0;
 }
