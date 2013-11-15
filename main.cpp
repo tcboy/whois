@@ -2,6 +2,7 @@
 #include <sys/types.h>		// for socket
 #include <sys/socket.h>		// for socket
 #include <arpa/inet.h>
+#include <unistd.h> 
 #include <netdb.h>
 #include <stdio.h>
 #include <cstdlib>
@@ -25,6 +26,9 @@ void init()
 	Server[".info"]		=	"whois.internic.net";
 	Server[".name"]		=	"whois.internic.net";
 	Server[".cn"]		=	"whois.cnnic.net.cn";
+	Server[".com.cn"]	=	"whois.cnnic.net.cn";
+	Server[".org.cn"]	=	"whois.cnnic.net.cn";
+	Server[".net.cn"]	=	"whois.cnnic.net.cn";
 	Server[".edu.cn"]	=	"whois.edu.cn";
 
 }
@@ -80,7 +84,7 @@ string GetWhois(string domain, string prev)
 		buf[bytes] = '\0';
 		result += buf;
 	}
-
+	close(sockfd);
 	return result;
 }
 
